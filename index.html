@@ -3,22 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>金宝生日快乐！</title>
+  <title>祝金宝生日快乐！🎂</title>
   <style>
-    /* ========== 变量定义 ========== */
-    :root {
-      --primary: #FF6B9D;
-      --primary-light: #FF8FB3;
-      --primary-dark: #E84A7F;
-      --white: #FFFFFF;
-      --bg-cream: #FFF5F8;
-      --text-dark: #2D1F3D;
-      --text-light: #666666;
-      --gold: #FFD700;
-      --transition: 0.4s ease;
-    }
-
-    /* ========== 全局重置 ========== */
     * {
       margin: 0;
       padding: 0;
@@ -26,620 +12,261 @@
     }
 
     body {
-      font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-      background: var(--bg-cream);
-      color: var(--text-dark);
-      overflow-x: hidden;
-    }
-
-    /* ========== 背景特效层 ========== */
-    #particles-canvas {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    /* ========== 通用区块样式 ========== */
-    section {
-      position: relative;
-      z-index: 1;
       min-height: 100vh;
+      background: linear-gradient(135deg, #FFE4EC 0%, #FFF0F5 50%, #FCE4EC 100%);
+      font-family: "Noto Sans SC", "Microsoft YaHei", sans-serif;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 60px 20px;
-    }
-
-    /* ========== Hero 区域 ========== */
-    .hero {
-      min-height: 100vh;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 50%, #FFE4EC 100%);
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .hero-content {
-      animation: fadeInUp 1s ease;
-    }
-
-    .hero h1 {
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      color: var(--white);
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
-      margin-bottom: 20px;
-    }
-
-    .hero h1 span {
-      display: inline-block;
-      animation: bounce 1s ease infinite;
-    }
-
-    .hero .subtitle {
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      color: var(--white);
-      opacity: 0.95;
-      margin-bottom: 40px;
-    }
-
-    .hero-avatar {
-      width: clamp(150px, 30vw, 250px);
-      height: clamp(150px, 30vw, 250px);
-      border-radius: 50%;
-      border: 6px solid var(--white);
-      box-shadow: 0 10px 40px rgba(255, 107, 157, 0.4);
-      object-fit: cover;
-      animation: pulse 2s ease infinite;
-      background: linear-gradient(45deg, #FFE4EC, var(--primary-light));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      margin: 0 auto 30px;
-    }
-
-    .scroll-hint {
-      position: absolute;
-      bottom: 40px;
-      left: 50%;
-      transform: translateX(-50%);
-      color: var(--white);
-      font-size: 1rem;
-      animation: bounce 2s ease infinite;
-    }
-
-    .scroll-hint::after {
-      content: '▼';
-      display: block;
-      margin-top: 8px;
-    }
-
-    /* ========== 气球 ========== */
-    .balloon {
-      position: absolute;
-      width: 60px;
-      height: 80px;
-      background: var(--white);
-      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-      opacity: 0.9;
-      animation: float 8s ease-in-out infinite;
-      box-shadow: inset -5px -5px 15px rgba(0,0,0,0.1);
-    }
-
-    .balloon::before {
-      content: '';
-      position: absolute;
-      bottom: -20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      height: 20px;
-      background: rgba(255,255,255,0.6);
-    }
-
-    .balloon::after {
-      content: '';
-      position: absolute;
-      top: 15px;
-      left: 20%;
-      width: 15px;
-      height: 20px;
-      background: rgba(255,255,255,0.4);
-      border-radius: 50%;
-    }
-
-    /* ========== Intro 区域 ========== */
-    .intro {
-      background: var(--white);
-      text-align: center;
-    }
-
-    .intro-card {
-      max-width: 700px;
-      padding: 50px;
-      background: linear-gradient(145deg, #FFFFFF, var(--bg-cream));
-      border-radius: 30px;
-      box-shadow: 0 20px 60px rgba(255, 107, 157, 0.15);
-    }
-
-    .intro h2 {
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: 30px;
-    }
-
-    .intro p {
-      font-size: 1.3rem;
-      line-height: 2;
-      color: var(--text-light);
-    }
-
-    .intro .highlight {
-      color: var(--primary);
-      font-weight: bold;
-      font-size: 1.5rem;
-    }
-
-    /* ========== Gallery 区域 ========== */
-    .gallery {
-      background: linear-gradient(180deg, var(--bg-cream) 0%, var(--white) 100%);
-    }
-
-    .gallery h2 {
-      font-size: 2.5rem;
-      color: var(--primary);
-      margin-bottom: 50px;
-      text-align: center;
-    }
-
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 25px;
-      max-width: 1200px;
-      width: 100%;
-    }
-
-    .gallery-item {
-      aspect-ratio: 1;
-      border-radius: 20px;
       overflow: hidden;
       position: relative;
       cursor: pointer;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-      transition: transform var(--transition);
+      user-select: none;
     }
 
-    .gallery-item:hover {
-      transform: translateY(-10px) scale(1.02);
-    }
-
-    .gallery-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-
-    .gallery-item:hover img {
-      transform: scale(1.1);
-    }
-
-    .gallery-placeholder {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg, var(--primary-light), var(--primary));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
-    }
-
-    /* ========== Messages 区域 ========== */
-    .messages {
-      background: var(--primary);
-      min-height: auto;
-      padding: 80px 20px;
-    }
-
-    .messages h2 {
-      font-size: 2.5rem;
-      color: var(--white);
-      margin-bottom: 50px;
-      text-align: center;
-    }
-
-    .messages-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 30px;
-      max-width: 1200px;
-      width: 100%;
-    }
-
-    .message-card {
-      background: var(--white);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
-      transition: transform var(--transition);
-      animation: fadeInUp 0.6s ease backwards;
-    }
-
-    .message-card:nth-child(1) { animation-delay: 0.1s; }
-    .message-card:nth-child(2) { animation-delay: 0.2s; }
-    .message-card:nth-child(3) { animation-delay: 0.3s; }
-
-    .message-card:hover {
-      transform: translateY(-8px);
-    }
-
-    .message-card .avatar {
-      width: 60px;
-      height: 60px;
+    /* 背景装饰 */
+    .bubble {
+      position: absolute;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--primary), var(--primary-light));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.5rem;
-      margin-bottom: 15px;
+      opacity: 0.6;
+      animation: floatUp 4s ease-in-out infinite;
     }
 
-    .message-card .name {
-      font-weight: bold;
-      color: var(--primary);
-      margin-bottom: 10px;
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-30px) rotate(180deg); }
     }
 
-    .message-card .text {
-      color: var(--text-light);
-      line-height: 1.8;
-    }
-
-    /* ========== Footer ========== */
-    .footer {
-      background: var(--text-dark);
-      color: var(--white);
-      text-align: center;
-      padding: 40px 20px;
-      min-height: auto;
-    }
-
-    .footer p {
-      opacity: 0.8;
-      margin-bottom: 10px;
-    }
-
-    .footer .heart {
-      color: var(--primary);
-      animation: heartbeat 1.5s ease infinite;
-    }
-
-    /* ========== 彩纸 ========== */
-    .confetti {
-      position: fixed;
-      width: 10px;
-      height: 10px;
-      top: -10px;
-      z-index: 100;
-      animation: confetti-fall linear forwards;
-    }
-
-    /* ========== 星星闪烁 ========== */
     .star {
       position: absolute;
-      width: 4px;
-      height: 4px;
-      background: var(--gold);
-      border-radius: 50%;
+      font-size: 20px;
       animation: twinkle 2s ease-in-out infinite;
-    }
-
-    /* ========== 动画关键帧 ========== */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(40px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    @keyframes float {
-      0%, 100% { 
-        transform: translateY(0) rotate(0deg); 
-      }
-      50% { 
-        transform: translateY(-30px) rotate(5deg); 
-      }
+      opacity: 0;
     }
 
     @keyframes twinkle {
-      0%, 100% { opacity: 0.3; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.5); }
+      0%, 100% { opacity: 0; transform: scale(0.5); }
+      50% { opacity: 1; transform: scale(1.2); }
     }
 
-    @keyframes confetti-fall {
-      to {
-        transform: translateY(100vh) rotate(720deg);
-      }
+    /* 蛋糕样式 */
+    .cake-container {
+      position: relative;
+      margin-bottom: 30px;
+      animation: wobble 3s ease-in-out infinite;
     }
 
-    @keyframes heartbeat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
+    @keyframes wobble {
+      0%, 100% { transform: rotate(-2deg); }
+      50% { transform: rotate(2deg); }
     }
 
-    /* ========== 响应式 ========== */
-    @media (max-width: 768px) {
-      section {
-        padding: 40px 15px;
-      }
-      .intro-card {
-        padding: 30px 20px;
-      }
-      .gallery-grid,
-      .messages-grid {
-        grid-template-columns: 1fr;
-      }
+    .cake {
+      font-size: 100px;
+      filter: drop-shadow(0 10px 20px rgba(233, 30, 99, 0.3));
+    }
+
+    /* 标题 */
+    .title {
+      font-size: 32px;
+      color: #E91E63;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.2);
+      font-weight: bold;
+    }
+
+    /* 祝福卡片 */
+    .blessing-card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      padding: 30px 50px;
+      box-shadow: 0 10px 40px rgba(233, 30, 99, 0.15);
+      border: 3px solid #FFD700;
+      text-align: center;
+      min-width: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .name-display {
+      font-size: 48px;
+      font-weight: bold;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .name-display.appear {
+      animation: nameAppear 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    @keyframes nameAppear {
+      0% { transform: scale(0.5) translateY(20px); opacity: 0; }
+      60% { transform: scale(1.15) translateY(-10px); }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    /* 人名颜色 */
+    .name-mom { color: #E91E63; }
+    .name-dad { color: #2196F3; }
+    .name-dabao { color: #FF9800; }
+    .name-xiaobao { color: #9C27B0; }
+
+    /* 播放状态 */
+    .play-status {
+      font-size: 14px;
+      color: #888;
+      margin-top: 10px;
+      height: 20px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .play-status.playing {
+      opacity: 1;
+    }
+
+    /* 提示文字 */
+    .hint {
+      font-size: 16px;
+      color: #999;
+      margin-top: 20px;
+    }
+
+    /* 点击反馈 */
+    body:active {
+      transform: scale(0.98);
+    }
+
+    /* 响应式 */
+    @media (max-width: 480px) {
+      .title { font-size: 24px; }
+      .cake { font-size: 70px; }
+      .blessing-card { padding: 20px 30px; min-width: 220px; }
+      .name-display { font-size: 36px; }
     }
   </style>
 </head>
 <body>
-  <!-- 背景粒子画布 -->
-  <canvas id="particles-canvas"></canvas>
+  <!-- 背景装饰 -->
+  <div id="decorations"></div>
 
-  <!-- Hero 区域 -->
-  <section class="hero" id="hero">
-    <div class="hero-content">
-      <div class="hero-avatar">🎂</div>
-      <h1><span>🎉</span> 金宝生日快乐 <span>🎉</span></h1>
-      <p class="subtitle">愿每一天都充满阳光与欢笑</p>
-    </div>
-    <div class="scroll-hint">往下滚动</div>
-  </section>
+  <!-- 蛋糕 -->
+  <div class="cake-container">
+    <div class="cake">🎂</div>
+  </div>
 
-  <!-- Intro 区域 -->
-  <section class="intro" id="intro">
-    <div class="intro-card">
-      <h2>💕 亲爱的金宝</h2>
-      <p>
-        在这特别的日子里，<br>
-        <span class="highlight">祝你生日快乐！</span><br><br>
-        愿你的生活像糖果一样甜蜜，<br>
-        愿你的笑容像阳光一样灿烂，<br>
-        愿你的未来像彩虹一样美丽！<br><br>
-        <span class="highlight">永远爱你！💖</span>
-      </p>
-    </div>
-  </section>
+  <!-- 标题 -->
+  <h1 class="title">🎉 祝金宝生日快乐！🎉</h1>
 
-  <!-- Gallery 区域 -->
-  <section class="gallery" id="gallery">
-    <h2>📸 美好回忆</h2>
-    <div class="gallery-grid">
-      <div class="gallery-item">
-        <div class="gallery-placeholder">🌸</div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder">🎈</div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder">🎁</div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder">⭐</div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder">🌈</div>
-      </div>
-      <div class="gallery-item">
-        <div class="gallery-placeholder">💖</div>
-      </div>
-    </div>
-  </section>
+  <!-- 祝福卡片 -->
+  <div class="blessing-card">
+    <div class="name-display" id="nameDisplay">👆</div>
+    <div class="play-status" id="playStatus">🔊 播放中...</div>
+  </div>
 
-  <!-- Messages 区域 -->
-  <section class="messages" id="messages">
-    <h2>💌 祝福语</h2>
-    <div class="messages-grid">
-      <div class="message-card">
-        <div class="avatar">👨</div>
-        <div class="name">爸爸</div>
-        <div class="text">宝贝女儿，你是爸爸最骄傲的宝贝！祝你健康成长，每天开心快乐！</div>
-      </div>
-      <div class="message-card">
-        <div class="avatar">👩</div>
-        <div class="name">妈妈</div>
-        <div class="text">我的小天使，生日快乐！愿你永远保持纯真，勇敢追逐梦想！</div>
-      </div>
-      <div class="message-card">
-        <div class="avatar">👴</div>
-        <div class="name">爷爷</div>
-        <div class="text">金宝又长大一岁啦！爷爷祝你学业进步，健康平安！</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <p>Made with <span class="heart">♥</span> for 金宝</p>
-    <p>&copy; 2026 生日庆祝</p>
-  </footer>
+  <!-- 提示 -->
+  <p class="hint">👆 点击页面随机抽取祝福</p>
 
   <script>
-    // ========== 背景粒子特效 ==========
-    const canvas = document.getElementById('particles-canvas');
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let stars = [];
+    // 祝福数据
+    const blessings = [
+      { name: '妈妈', class: 'name-mom', text: '祝金宝生日快乐，健康成长！' },
+      { name: '爸爸', class: 'name-dad', text: '金宝生日快乐，爸爸妈妈爱你！' },
+      { name: '大宝', class: 'name-dabao', text: '妹妹生日快乐，天天开心！' },
+      { name: '小宝', class: 'name-xiaobao', text: '祝姐姐生日快乐！' }
+    ];
 
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    const nameDisplay = document.getElementById('nameDisplay');
+    const playStatus = document.getElementById('playStatus');
+    let isSpeaking = false;
 
-    // 星星类
-    class Star {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 3 + 1;
-        this.alpha = Math.random();
-        this.speed = Math.random() * 0.02 + 0.01;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 215, 0, ${this.alpha})`;
-        ctx.fill();
-      }
-      update() {
-        this.alpha += this.speed;
-        if (this.alpha > 1 || this.alpha < 0.2) {
-          this.speed = -this.speed;
-        }
-      }
-    }
-
-    // 初始化星星
-    for (let i = 0; i < 50; i++) {
-      stars.push(new Star());
-    }
-
-    // 彩纸类
-    class Confetti {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = -10;
-        this.size = Math.random() * 8 + 5;
-        this.speedY = Math.random() * 2 + 2;
-        this.speedX = Math.random() * 2 - 1;
-        this.rotation = Math.random() * 360;
-        this.rotationSpeed = Math.random() * 10 - 5;
-        this.colors = ['#FF6B9D', '#FF8FB3', '#FFD700', '#87CEEB', '#98FB98', '#DDA0DD'];
-        this.color = this.colors[Math.floor(Math.random() * this.colors.length)];
-      }
-      update() {
-        this.y += this.speedY;
-        this.x += this.speedX;
-        this.rotation += this.rotationSpeed;
-      }
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation * Math.PI / 180);
-        ctx.fillStyle = this.color;
-        ctx.fillRect(-this.size / 2, -this.size / 2, this.size, this.size);
-        ctx.restore();
+    // 语音合成
+    function speak(text) {
+      if ('speechSynthesis' in window) {
+        // 停止之前的语音
+        window.speechSynthesis.cancel();
+        
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'zh-CN';
+        utterance.rate = 0.9;
+        utterance.pitch = 1.2;
+        
+        utterance.onstart = () => {
+          playStatus.classList.add('playing');
+          isSpeaking = true;
+        };
+        
+        utterance.onend = () => {
+          playStatus.classList.remove('playing');
+          isSpeaking = false;
+        };
+        
+        window.speechSynthesis.speak(utterance);
       }
     }
 
-    // 动画循环
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    // 随机抽取
+    function randomBlessing() {
+      // 移除动画类
+      nameDisplay.classList.remove('appear');
       
-      // 绘制星星
-      stars.forEach(star => {
-        star.update();
-        star.draw();
-      });
-
-      // 绘制彩纸
-      particles.forEach((p, index) => {
-        p.update();
-        p.draw();
-        if (p.y > canvas.height) {
-          particles.splice(index, 1);
-        }
-      });
-
-      requestAnimationFrame(animate);
+      // 随机选择
+      const randomIndex = Math.floor(Math.random() * blessings.length);
+      const selected = blessings[randomIndex];
+      
+      // 更新显示
+      nameDisplay.textContent = selected.name;
+      nameDisplay.className = 'name-display ' + selected.class;
+      
+      // 重新触发动画
+      void nameDisplay.offsetWidth; // 强制重绘
+      nameDisplay.classList.add('appear');
+      
+      // 播放语音
+      speak(selected.text);
     }
-    animate();
 
-    // 点击触发彩纸
-    document.addEventListener('click', (e) => {
-      for (let i = 0; i < 30; i++) {
-        const confetti = new Confetti();
-        confetti.x = e.clientX;
-        confetti.y = e.clientY;
-        particles.push(confetti);
+    // 点击事件
+    document.body.addEventListener('click', randomBlessing);
+
+    // 创建背景装饰
+    function createDecorations() {
+      const container = document.getElementById('decorations');
+      const colors = ['#FFB6C1', '#FF69B4', '#FFD700', '#87CEEB', '#DDA0DD'];
+      
+      // 气泡
+      for (let i = 0; i < 15; i++) {
+        const bubble = document.createElement('div');
+        bubble.className = 'bubble';
+        bubble.style.width = Math.random() * 30 + 15 + 'px';
+        bubble.style.height = bubble.style.width;
+        bubble.style.left = Math.random() * 100 + '%';
+        bubble.style.top = Math.random() * 100 + '%';
+        bubble.style.background = colors[Math.floor(Math.random() * colors.length)];
+        bubble.style.animationDelay = Math.random() * 4 + 's';
+        bubble.style.animationDuration = Math.random() * 2 + 3 + 's';
+        container.appendChild(bubble);
       }
-    });
-
-    // 定时生成彩纸
-    setInterval(() => {
-      if (particles.length < 100) {
-        const confetti = new Confetti();
-        confetti.x = Math.random() * canvas.width;
-        particles.push(confetti);
+      
+      // 星星
+      const stars = ['✨', '⭐', '🌟'];
+      for (let i = 0; i < 10; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.textContent = stars[Math.floor(Math.random() * stars.length)];
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 5 + 's';
+        star.style.animationDuration = Math.random() * 2 + 2 + 's';
+        container.appendChild(star);
       }
-    }, 500);
-
-    // ========== 滚动动画 ==========
-    const observerOptions = {
-      threshold: 0.2,
-      rootMargin: '0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, observerOptions);
-
-    // 观察所有卡片
-    document.querySelectorAll('.message-card, .gallery-item').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(30px)';
-      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(el);
-    });
-
-    // ========== 气球生成 ==========
-    function createBalloon() {
-      const hero = document.querySelector('.hero');
-      const balloon = document.createElement('div');
-      balloon.className = 'balloon';
-      balloon.style.left = Math.random() * 100 + '%';
-      balloon.style.background = `hsl(${Math.random() * 60 + 330}, 100%, 95%)`;
-      balloon.style.animationDuration = (Math.random() * 4 + 6) + 's';
-      balloon.style.animationDelay = Math.random() * 2 + 's';
-      hero.appendChild(balloon);
-
-      setTimeout(() => balloon.remove(), 12000);
     }
 
-    // 初始生成气球
-    for (let i = 0; i < 8; i++) {
-      setTimeout(createBalloon, i * 300);
-    }
-
-    // 持续生成气球
-    setInterval(createBalloon, 2000);
+    createDecorations();
   </script>
 </body>
 </html>
