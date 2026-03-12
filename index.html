@@ -230,7 +230,7 @@
 <body>
   <!-- 星空背景 -->
   <div class="stars-container" id="starsContainer"></div>
-  
+
   <!-- 流星 -->
   <div id="meteors"></div>
 
@@ -251,12 +251,13 @@
   <p class="hint">👆 点击页面随机抽取祝福</p>
 
   <script>
-    // 祝福数据 - 更新为金小宝
+    // 祝福数据 - V1.3 新增大聪明，语音改为播报人名
     const blessings = [
-      { name: '妈妈', colorStart: '#FF69B4', colorEnd: '#FFB6C1', text: '祝金小宝生日快乐，健康成长！' },
-      { name: '爸爸', colorStart: '#00D4FF', colorEnd: '#00FFFF', text: '金小宝生日快乐，爸爸妈妈爱你！' },
-      { name: '大宝', colorStart: '#FFD700', colorEnd: '#FFA500', text: '弟弟生日快乐，天天开心！' },
-      { name: '小宝', colorStart: '#7B68EE', colorEnd: '#9370DB', text: '祝哥哥生日快乐！' }
+      { name: '妈妈', colorStart: '#FF69B4', colorEnd: '#FFB6C1' },
+      { name: '爸爸', colorStart: '#00D4FF', colorEnd: '#00FFFF' },
+      { name: '大宝', colorStart: '#FFD700', colorEnd: '#FFA500' },
+      { name: '小宝', colorStart: '#7B68EE', colorEnd: '#9370DB' },
+      { name: '大聪明', colorStart: '#4CAF50', colorEnd: '#8BC34A' }  // 新增
     ];
 
     const nameDisplay = document.getElementById('nameDisplay');
@@ -301,19 +302,19 @@
         const sparkle = document.createElement('div');
         sparkle.className = 'sparkle';
         sparkle.textContent = sparkleChars[Math.floor(Math.random() * sparkleChars.length)];
-        
+
         const angle = (i / 20) * Math.PI * 2;
         const distance = 50 + Math.random() * 50;
         sparkle.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
         sparkle.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
         sparkle.style.left = '50%';
         sparkle.style.top = '50%';
-        
+
         sparkles.appendChild(sparkle);
-        
+
         // 触发动画
         setTimeout(() => sparkle.classList.add('animate'), 10);
-        
+
         // 清理
         setTimeout(() => sparkle.remove(), 800);
       }
@@ -327,24 +328,24 @@
       setTimeout(() => ripple.remove(), 800);
     }
 
-    // 语音合成
+    // 语音合成 - V1.3 改为播报人名
     function speak(text) {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
-        
+
         const utterance = new SpeechSynthesisUtterance(text);
         utterance.lang = 'zh-CN';
         utterance.rate = 0.9;
         utterance.pitch = 1.1;
-        
+
         utterance.onstart = () => {
           playStatus.classList.add('playing');
         };
-        
+
         utterance.onend = () => {
           playStatus.classList.remove('playing');
         };
-        
+
         window.speechSynthesis.speak(utterance);
       }
     }
@@ -353,34 +354,34 @@
     function randomBlessing() {
       // 移除动画类
       nameDisplay.classList.remove('show');
-      
+
       // 随机选择
       const randomIndex = Math.floor(Math.random() * blessings.length);
       const selected = blessings[randomIndex];
-      
+
       // 设置颜色
       nameDisplay.style.setProperty('--color-start', selected.colorStart);
       nameDisplay.style.setProperty('--color-end', selected.colorEnd);
-      
+
       // 更新显示
       nameDisplay.textContent = selected.name;
-      
+
       // 触发动画
       void nameDisplay.offsetWidth;
       nameDisplay.classList.add('show');
-      
+
       // 特效
       createSparkles();
       createRipple();
-      
-      // 播放语音
-      speak(selected.text);
+
+      // V1.3: 播放语音改为播报人名
+      speak(selected.name);
     }
 
     // 初始化
     createStars();
     createMeteors();
-    
+
     // 点击事件
     document.body.addEventListener('click', randomBlessing);
   </script>
